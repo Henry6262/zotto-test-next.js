@@ -2,8 +2,18 @@
 
 import { ZottoProvider, ZottoSwap } from 'zotto-canary-sdk-react19'
 import { WalletConnect } from '../components/wallet-connect'
+import { useAccount } from 'wagmi'
+import { useEffect } from 'react'
 
 export default function Home() {
+
+ const address = useAccount()
+
+	useEffect(() => {
+		console.log("Home")
+	}, [address])
+
+	console.log("Home")
 	return (
 		<main className="p-8 max-w-4xl mx-auto">
 			<h1 className="text-3xl font-bold mb-8">Zotto SDK Test</h1>
