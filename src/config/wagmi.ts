@@ -1,17 +1,12 @@
-import { createConfig, http } from 'wagmi'
+import { createConfig } from '@privy-io/wagmi'
+import { http } from 'wagmi'
 import { mainnet, polygon, optimism, arbitrum } from 'wagmi/chains'
-import { metaMask, walletConnect, injected } from 'wagmi/connectors'
+import { neura } from './chains'
 
 export const wagmiConfig = createConfig({
-	chains: [mainnet, polygon, optimism, arbitrum],
-	connectors: [
-		metaMask(),
-		walletConnect({
-			projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '',
-		}),
-		injected(),
-	],
+	chains: [neura, mainnet, polygon, optimism, arbitrum],
 	transports: {
+		[neura.id]: http(),
 		[mainnet.id]: http(),
 		[polygon.id]: http(),
 		[optimism.id]: http(),
@@ -19,4 +14,4 @@ export const wagmiConfig = createConfig({
 	},
 })
 
-export const chains = [mainnet, polygon, optimism, arbitrum] 
+export const chains = [neura, mainnet, polygon, optimism, arbitrum] 
